@@ -2,20 +2,16 @@ package com.example.orm.service;
 
 import com.example.orm.model.entity.Product;
 import com.example.orm.model.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private ProductRepository productRepository;
-
-    @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    private final ProductRepository productRepository;
 
     @Override
     public List<Product> getProductList() {

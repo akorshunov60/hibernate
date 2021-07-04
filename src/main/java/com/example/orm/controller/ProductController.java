@@ -56,4 +56,12 @@ public class ProductController {
         logger.debug("New product created: " + product.toString());
         return "redirect:/products";
     }
+
+    @GetMapping("/delete")
+    public String deleteProduct(@RequestParam Long id, Model model) {
+        logger.debug("Product deleted: " + productService.getProductById(id).toString());
+        productService.deleteById(id);
+        model.addAttribute("productList", productService.getProductList());
+        return "redirect:/products";
+    }
 }

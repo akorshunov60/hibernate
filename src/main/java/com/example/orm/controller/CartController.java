@@ -15,13 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Data
-@AllArgsConstructor
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 
     private CartService cartService;
     private Cart cart;

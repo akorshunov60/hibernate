@@ -54,7 +54,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                     .orderBy(cb.desc(productRoot.get("name")));
         List<Product> list = em.createQuery(productQuery).getResultList();
 */
-
         em.getTransaction().commit();
         return list;
     }
@@ -62,9 +61,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public void saveOrUpdate(Product product) {
         em.getTransaction().begin();
-        if (product.getId() == null) {
-            em.persist(product);
-        }
+        if (product.getId() == null) { em.persist(product); }
         em.merge(product);
         em.getTransaction().commit();
     }
@@ -72,9 +69,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Product findById(Long id) {
         em.getTransaction().begin();
-//        Product product = em.createNativeQuery("SELECT * FROM products.product p WHERE p.id = id", Product.class)
-//                .setParameter("p.id", id)
-//                .getSingleResult();
+/*
+        Product product = em.createNativeQuery("SELECT * FROM products.product p WHERE p.id = id", Product.class)
+                .setParameter("p.id", id)
+                .getSingleResult();
+*/
         Product product = em.find(Product.class, id); // CRUD - read
         em.getTransaction().commit();
         return product;

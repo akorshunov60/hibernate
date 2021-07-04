@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
@@ -17,7 +16,6 @@ import java.util.Properties;
  */
 @Profile("java")
 @Configuration
-//@EnableTransactionManagement
 public class JavaHibernateConfiguration {
     @Bean
     public EntityManager entityManager(SessionFactory sessionFactory) {
@@ -28,7 +26,7 @@ public class JavaHibernateConfiguration {
     public DataSource getDataSource() {
 
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setURL("jdbc:mysql://localhost:3306/products?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Europe/Moscow");
+        dataSource.setURL("jdbc:mysql://localhost:3306/products?serverTimezone=Europe/Moscow");
         dataSource.setUser("user1");
         dataSource.setPassword("");
 
@@ -49,12 +47,7 @@ public class JavaHibernateConfiguration {
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "none");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
-/*
-        // если использовать setProperty, то numeric передавать как строки "3", "20", "10"
-        hibernateProperties.put("hibernate.max_fetch_depth", 3);
-        hibernateProperties.put("hibernate.jdbc.fetch_size", 20);
-        hibernateProperties.put("hibernate.jdbc.batch_size", 10);
-*/
+
         return hibernateProperties;
     }
 }
