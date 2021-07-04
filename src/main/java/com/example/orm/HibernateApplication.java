@@ -1,4 +1,4 @@
-package com.example.hibernate;
+package com.example.orm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class HibernateApplication {
     public static void main(String[] args) {
         SpringApplication.run(HibernateApplication.class, args);
     }
-
 }
